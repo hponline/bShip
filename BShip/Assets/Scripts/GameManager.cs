@@ -9,10 +9,11 @@ public class GameManager : MonoBehaviour
     Queue<GameObject> mapPool = new Queue<GameObject>();
     List<GameObject> activeMaps = new List<GameObject>();
 
-    public int poolSize = 5;
+    public int poolSize = 2;
     float roadLength = 684f;
     float nextSpawnZ = 0f;
-    public float despawnSpawnZ = 750f;
+    float spawnDistance = 1000f; // oyuncudan uzaða spawn etmesi için
+    float despawnSpawnZ = 750f;
 
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
     void CreateRoad() // Map üretme
     {
         GameObject mapPart = GetPooledObject();
-        mapPart.transform.position = new Vector3(0, 11.77f, nextSpawnZ);
+        mapPart.transform.position = new Vector3(0, 11.77f, nextSpawnZ + spawnDistance);
         mapPart.SetActive(true);
 
         nextSpawnZ += roadLength;
