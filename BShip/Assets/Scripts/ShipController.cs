@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using static UnityEditor.PlayerSettings;
+﻿using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
@@ -10,11 +7,6 @@ public class ShipController : MonoBehaviour
     public int desiredLane = 0; // Şerit 0 ortada demektir.
     int laneDistance = 53; // Yatay Şerit uzunlugu
   
-
-    private void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -37,4 +29,13 @@ public class ShipController : MonoBehaviour
         transform.position += moveSpeed * Time.deltaTime * -transform.forward;       
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            GameManager.gameManagerInstance.coinText.text = "Coin: " + CoinManager.coinManagerInstance.GetCoinCount();
+            Destroy(other.gameObject);
+            CoinManager.coinManagerInstance.AddCoin(1);            
+        }
+    }
 }

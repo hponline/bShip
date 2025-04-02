@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishSpin : MonoBehaviour
+public class Fish : MonoBehaviour
 {
     public float spinSpeed;
 

@@ -1,25 +1,45 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager gameManagerInstance;
+
     public GameObject[] mapPrefabs;
+    public Transform mapsParent;
     public Transform boat;
 
-    Queue<GameObject> mapPool = new Queue<GameObject>();
-    List<GameObject> activeMaps = new List<GameObject>();
+    [Header("UI")]
+    public TextMeshProUGUI coinText;
 
-    public int poolSize = 2;
-    float roadLength = 684f;
+    Queue<GameObject> mapPool = new();
+    List<GameObject> activeMaps = new();
+
+    [Header("Variables")]
+    public int poolSize = 3;
     float nextSpawnZ = 0f;
-    float spawnDistance = 1000f; // oyuncudan uzaða spawn etmesi için
-    float despawnSpawnZ = 750f;
+    const float roadLength = 682f;
+    const float spawnDistance = 682; // oyuncudan uzaða spawn etmesi için
+    const float despawnSpawnZ = 750f;
 
     private void Awake()
     {
+        if (gameManagerInstance == null)
+        {
+            gameManagerInstance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+
         for (int i = 0; i < poolSize; i++) // Mapler oluþturuldu
         {
-            GameObject obj = Instantiate(mapPrefabs[0], Vector3.zero, Quaternion.identity);
+            GameObject obj = Instantiate(mapPrefabs[0], Vector3.zero, Quaternion.identity, mapsParent.transform);
+
             obj.SetActive(false);
             mapPool.Enqueue(obj);
         }
@@ -30,10 +50,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
-        if (boat.position.z > nextSpawnZ -roadLength)        
+        if (boat.position.z > nextSpawnZ - roadLength)
             CreateRoad();
 
         RecycleOldMap();
@@ -76,5 +95,5 @@ public class GameManager : MonoBehaviour
             GameObject obj = Instantiate(mapPrefabs[0]);
             return obj;
         }
-    }    
+    }
 }
