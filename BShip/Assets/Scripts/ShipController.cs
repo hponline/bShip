@@ -37,5 +37,11 @@ public class ShipController : MonoBehaviour
             Destroy(other.gameObject);
             CoinManager.coinManagerInstance.AddCoin(1);            
         }
+
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            GameManager.gameManagerInstance.GameOver();
+        }
+
     }
 }
