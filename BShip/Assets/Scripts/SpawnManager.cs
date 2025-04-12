@@ -5,6 +5,7 @@ public class SpawnManager : MonoBehaviour
 {
     [Header("Map Spawn")]
     public GameObject[] mapPrefabs;
+    public GameObject firstMap;
     public Transform mapsParent;
     public Transform boat;
 
@@ -64,7 +65,10 @@ public class SpawnManager : MonoBehaviour
     private void Update()
     {
         if (boat.position.z > nextSpawnZ - roadLength)
+        {
             CreateRoad();
+            Destroy(firstMap);            
+        }
 
         RecycleOldMap();
     }
