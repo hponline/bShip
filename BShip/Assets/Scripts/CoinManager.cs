@@ -21,8 +21,7 @@ public class CoinManager : MonoBehaviour
 
     public void AddCoin(int amount)
     {
-        coinCount += amount;
-        Debug.Log("Toplam Coin: " + coinCount);
+        coinCount += amount;        
     }
 
     public int GetCoinCount()

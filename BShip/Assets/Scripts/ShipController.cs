@@ -33,8 +33,8 @@ public class ShipController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Coin"))
         {
-            GameManager.gameManagerInstance.coinText.text = "Coin: " + CoinManager.coinManagerInstance.GetCoinCount();
-            Destroy(other.gameObject);
+            GameManager.gameManagerInstance.coinText.text = "Coin: 0" + CoinManager.coinManagerInstance.GetCoinCount();
+            other.gameObject.SetActive(false);
             CoinManager.coinManagerInstance.AddCoin(1);            
         }
 
