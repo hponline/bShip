@@ -40,3 +40,5 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(false);
     }
 }
+
+// 4 mapý çaðýr aralarýndan rastgele çaðýr

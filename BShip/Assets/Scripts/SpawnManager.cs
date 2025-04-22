@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random; // bunu silince random.range'ler hata veriyor
 
 public class SpawnManager : MonoBehaviour
 {
@@ -13,26 +10,10 @@ public class SpawnManager : MonoBehaviour
     public Transform boat;
 
     [Header("Obstackles")]
-    public Transform[] obstacleSpawnPoints;
-    public GameObject[] obstacklePrefabs;
     public Transform obstackleSpawnParent;
-    public float ObstackleDistance = 300f;
 
     [Header("Spawn Point")]
-    public Transform[] coinSpawnPoints;
     public Transform coinSpawnParent;
-    public float spawnDuration = 5.0f;
-    public float spawnInterval = 2.0f;
-
-    [Header("Coin Variables")]
-    public GameObject coinPrefabs;
-
-    public float coinSpawnDistance = 500f;
-    public float startDelay = 2;
-    public float startInterval = 3.05f;
-    const float coinSpawnOffsetY = 10f;
-    const float spawnLeft = -75.7f;
-    const float spawnRight = 31;
 
     Queue<GameObject> mapPool = new();
     List<GameObject> activeMaps = new();
@@ -45,11 +26,14 @@ public class SpawnManager : MonoBehaviour
     const float spawnDistance = 682; // oyuncudan uzaða spawn etmesi için
     const float despawnSpawnZ = 750f; // oyuncunun arkasýndaki mapler yok olur
 
+
+    public int sayac;
+
     private void Awake()
     {
         for (int i = 0; i < poolSize; i++) // Mapler oluþturuldu
         {
-            GameObject obj = Instantiate(mapPrefabs[0], Vector3.zero, Quaternion.identity, mapsParent.transform);
+            GameObject obj = Instantiate(mapPrefabs[Random.Range(0, mapPrefabs.Length)], Vector3.zero, Quaternion.identity, mapsParent.transform);
 
             obj.SetActive(false);
             mapPool.Enqueue(obj);
@@ -61,17 +45,6 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-
-    void Start()
-    {
-        //InvokeRepeating(nameof(SpawnRandomObstackle), startDelay, startInterval);
-        //InvokeRepeating(nameof(SpawnRandomCoin), startDelay, startInterval);
-
-        //SpawnStart();
-
-
-    }
-
     private void Update()
     {
         if (boat.position.z > nextSpawnZ - roadLength)
@@ -79,53 +52,7 @@ public class SpawnManager : MonoBehaviour
             CreateRoad();
             Destroy(firstMap);
         }
-
         RecycleOldMap();
-    }
-
-    void SpawnStart()
-    {
-        StartCoroutine(SpawnObject(SpawnRandomCoin));
-        StartCoroutine(SpawnObject(SpawnRandomObstackle));
-    }
-
-    IEnumerator SpawnObject(Action spawnMethod)
-    {
-        float elapsed = 0f;
-        while (elapsed < spawnDuration)
-        {
-            spawnMethod();
-            yield return new WaitForSeconds(spawnInterval);
-            elapsed += Time.deltaTime;
-        }
-    }
-
-
-    void SpawnRandomObstackle()
-    {
-        Vector3 spawnOffSet = new(0, 0, ObstackleDistance);
-        int obstackleIndex = Random.Range(0, obstacklePrefabs.Length);
-        //Vector3 spawnPos = new(Random.Range(spawnLeft, spawnRight), 0, boat.position.z + spawnOffSet.z);
-        Vector3 spawnPos = new(obstacleSpawnPoints[obstackleIndex].position.x, 0, boat.position.z + spawnOffSet.z);
-
-        Instantiate(obstacklePrefabs[obstackleIndex], spawnPos, obstacklePrefabs[obstackleIndex].transform.rotation, obstackleSpawnParent.transform);
-        if (boat.position.z > nextSpawnZ - roadLength)
-        {
-            Destroy(obstacklePrefabs[obstackleIndex]);
-        }
-    }
-
-    void SpawnRandomCoin()
-    {
-        Vector3 spawnOffSet = new(0, 0, coinSpawnDistance);
-        int spawnPosIndex = Random.Range(0, coinSpawnPoints.Length);
-        Vector3 spawnPos = new(coinSpawnPoints[spawnPosIndex].position.x, coinSpawnOffsetY, boat.position.z + spawnOffSet.z);
-
-        Instantiate(coinPrefabs, spawnPos, Quaternion.identity, coinSpawnParent.transform);
-        if (boat.position.z > nextSpawnZ - roadLength)
-        {
-            Destroy(coinPrefabs);
-        }
     }
 
     void CreateRoad() // Map üretme
@@ -134,13 +61,10 @@ public class SpawnManager : MonoBehaviour
         mapPart.transform.position = new Vector3(0, mapSpawnOffsetY, nextSpawnZ + spawnDistance);
         mapPart.SetActive(true);
 
-        //
-        if (mapPart != null)
+        if (mapPart != null) // Coin Reset
         {
-            mapPart.AddComponent<ResetCoin>();
             mapPart.GetComponent<ResetCoin>().ResetCoinSpawn();
         }
-
         nextSpawnZ += roadLength;
         activeMaps.Add(mapPart);
     }
@@ -169,11 +93,8 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            GameObject obj = Instantiate(mapPrefabs[0]);
+            GameObject obj = Instantiate(mapPrefabs[Random.Range(0, mapPrefabs.Length)]);
             return obj;
         }
     }
-
-
-
 }
