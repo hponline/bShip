@@ -1134,13 +1134,28 @@ MonoBehaviour:
   - {fileID: 3091775986331930226, guid: 62014f7cb92a33f419377e4ff3292a46, type: 3}
   - {fileID: 3091775986331930226, guid: c7db110bac14e1642880bb6e4ab58e7a, type: 3}
   - {fileID: 3091775986331930226, guid: 246177312612d7c4caaf9436b2ab73b3, type: 3}
+  - {fileID: 3091775986331930226, guid: f1fbacd5fa6fcc8488d767c5175027c3, type: 3}
+  - {fileID: 3091775986331930226, guid: 64f3756481fcf074699e36b39dfa04f9, type: 3}
   firstMap: {fileID: 4959837051454757728}
   mapsParent: {fileID: 1780483366}
   boat: {fileID: 1367602372}
   obstackleSpawnParent: {fileID: 723894759}
   coinSpawnParent: {fileID: 176586436}
-  poolSize: 3
-  sayac: 0
+  levels:
+  - distanceThreshold: 500
+    minPrefabIndex: 0
+    maxPrefabIndex: 2
+  - distanceThreshold: 700
+    minPrefabIndex: 1
+    maxPrefabIndex: 3
+  - distanceThreshold: 1000
+    minPrefabIndex: 2
+    maxPrefabIndex: 6
+  - distanceThreshold: 1300
+    minPrefabIndex: 0
+    maxPrefabIndex: 6
+  prefabIndex: 0
+  poolSize: 4
 --- !u!4 &883697673
 Transform:
   m_ObjectHideFlags: 0

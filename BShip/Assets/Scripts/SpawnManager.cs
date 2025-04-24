@@ -1,6 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class LevelData
+{
+    public float distanceThreshold;
+    public int minPrefabIndex;
+    public int maxPrefabIndex;
+}
+
 public class SpawnManager : MonoBehaviour
 {
     [Header("Map Spawn")]
@@ -19,6 +27,9 @@ public class SpawnManager : MonoBehaviour
     List<GameObject> activeMaps = new();
 
     [Header("Map Variables")]
+    public LevelData[] levels;
+    public int prefabIndex;
+    float startZ;
     public int poolSize = 5;
     float nextSpawnZ = 0f;
     const float mapSpawnOffsetY = 11.77f;
@@ -27,13 +38,13 @@ public class SpawnManager : MonoBehaviour
     const float despawnSpawnZ = 750f; // oyuncunun arkasýndaki mapler yok olur
 
 
-    public int sayac;
-
     private void Awake()
     {
+        startZ = boat.position.z;
+
         for (int i = 0; i < poolSize; i++) // Mapler oluþturuldu
         {
-            GameObject obj = Instantiate(mapPrefabs[Random.Range(0, mapPrefabs.Length)], Vector3.zero, Quaternion.identity, mapsParent.transform);
+            GameObject obj = Instantiate(mapPrefabs[prefabIndex], Vector3.zero, Quaternion.identity, mapsParent.transform);
 
             obj.SetActive(false);
             mapPool.Enqueue(obj);
@@ -47,44 +58,57 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
+        float traveled = boat.position.z - startZ;
         if (boat.position.z > nextSpawnZ - roadLength)
         {
             CreateRoad();
             Destroy(firstMap);
         }
-        RecycleOldMap();
+        RecycleOldMap(traveled);
     }
 
     void CreateRoad() // Map üretme
     {
-        GameObject mapPart = GetPooledObject();
+        float traveled = boat.position.z - startZ;
+        prefabIndex = ChooseMapPrefabIndex(traveled);
+        GameObject mapPart = GetPooledObject(prefabIndex);
+
         mapPart.transform.position = new Vector3(0, mapSpawnOffsetY, nextSpawnZ + spawnDistance);
         mapPart.SetActive(true);
 
-        if (mapPart != null) // Coin Reset
-        {
-            mapPart.GetComponent<ResetCoin>().ResetCoinSpawn();
-        }
+        mapPart.GetComponent<ResetCoin>()?.ResetCoinSpawn(); // Coin Reset
+
         nextSpawnZ += roadLength;
         activeMaps.Add(mapPart);
     }
 
-    void RecycleOldMap() // Map Geri Dönüþüm
+    void RecycleOldMap(float traveled) // Map Geri Dönüþüm
     {
-        if (activeMaps.Count > 0)
-        {
-            GameObject firstMap = activeMaps[0];
+        if (activeMaps.Count == 0) return;
 
-            if (boat.position.z - firstMap.transform.position.z > despawnSpawnZ)
-            {
-                activeMaps.RemoveAt(0);
-                firstMap.SetActive(false);
-                mapPool.Enqueue(firstMap);
-            }
+        GameObject firstMap = activeMaps[prefabIndex];
+        if (boat.position.z - firstMap.transform.position.z > despawnSpawnZ)
+        {
+            activeMaps.RemoveAt(0);
+            firstMap.SetActive(false);
+            mapPool.Enqueue(firstMap);
         }
     }
 
-    GameObject GetPooledObject() // Havuzdan Map çekme
+    int ChooseMapPrefabIndex(float traveled)
+    {
+        foreach (var lvl in levels)
+        {
+            if (traveled < lvl.distanceThreshold)
+            {
+                return Random.Range(lvl.minPrefabIndex, lvl.maxPrefabIndex);
+            }
+        }
+        var last = levels[levels.Length - 1];
+        return Random.Range(last.minPrefabIndex, last.maxPrefabIndex);
+    }
+
+    GameObject GetPooledObject(float traveled) // Havuzdan Map çekme
     {
         if (mapPool.Count > 0)
         {
@@ -93,8 +117,11 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            GameObject obj = Instantiate(mapPrefabs[Random.Range(0, mapPrefabs.Length)]);
+            GameObject obj = Instantiate(mapPrefabs[prefabIndex]);
             return obj;
         }
     }
+
 }
+
+// Havuz dolu oldugu için yeni üretilen mapleri üzerine eklemiyor
