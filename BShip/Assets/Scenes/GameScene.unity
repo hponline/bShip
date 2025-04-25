@@ -1144,7 +1144,7 @@ MonoBehaviour:
   levels:
   - distanceThreshold: 500
     minPrefabIndex: 0
-    maxPrefabIndex: 2
+    maxPrefabIndex: 1
   - distanceThreshold: 700
     minPrefabIndex: 1
     maxPrefabIndex: 3

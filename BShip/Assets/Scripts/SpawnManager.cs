@@ -42,6 +42,8 @@ public class SpawnManager : MonoBehaviour
     {
         startZ = boat.position.z;
 
+        float traveled = boat.position.z - startZ;
+        prefabIndex = ChooseMapPrefabIndex(traveled);
         for (int i = 0; i < poolSize; i++) // Mapler oluþturuldu
         {
             GameObject obj = Instantiate(mapPrefabs[prefabIndex], Vector3.zero, Quaternion.identity, mapsParent.transform);
@@ -51,9 +53,8 @@ public class SpawnManager : MonoBehaviour
         }
 
         for (int i = 0; i < poolSize; i++)
-        {
             CreateRoad();
-        }
+
     }
 
     private void Update()
@@ -62,9 +63,9 @@ public class SpawnManager : MonoBehaviour
         if (boat.position.z > nextSpawnZ - roadLength)
         {
             CreateRoad();
-            Destroy(firstMap);
+            Destroy(firstMap); // Baþlangýç Zemini
         }
-        RecycleOldMap(traveled);
+        RecycleOldMap();
     }
 
     void CreateRoad() // Map üretme
@@ -82,16 +83,16 @@ public class SpawnManager : MonoBehaviour
         activeMaps.Add(mapPart);
     }
 
-    void RecycleOldMap(float traveled) // Map Geri Dönüþüm
+    void RecycleOldMap() // Map Geri Dönüþüm
     {
         if (activeMaps.Count == 0) return;
 
-        GameObject firstMap = activeMaps[prefabIndex];
-        if (boat.position.z - firstMap.transform.position.z > despawnSpawnZ)
+        GameObject oldMap = activeMaps[0];
+        if (boat.position.z - oldMap.transform.position.z > despawnSpawnZ)
         {
             activeMaps.RemoveAt(0);
-            firstMap.SetActive(false);
-            mapPool.Enqueue(firstMap);
+            oldMap.SetActive(false);
+            mapPool.Enqueue(oldMap);
         }
     }
 
@@ -104,11 +105,11 @@ public class SpawnManager : MonoBehaviour
                 return Random.Range(lvl.minPrefabIndex, lvl.maxPrefabIndex);
             }
         }
-        var last = levels[levels.Length - 1];
+        var last = levels[levels.Length - 1]; // Son haritadan baþka yoksa son haritayý döndür
         return Random.Range(last.minPrefabIndex, last.maxPrefabIndex);
     }
 
-    GameObject GetPooledObject(float traveled) // Havuzdan Map çekme
+    GameObject GetPooledObject(int prefabIndex) // Havuzdan Map çekme
     {
         if (mapPool.Count > 0)
         {
@@ -121,7 +122,6 @@ public class SpawnManager : MonoBehaviour
             return obj;
         }
     }
-
 }
 
 // Havuz dolu oldugu için yeni üretilen mapleri üzerine eklemiyor
