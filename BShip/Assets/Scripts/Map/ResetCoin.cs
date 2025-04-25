@@ -12,7 +12,7 @@ public class ResetCoin : MonoBehaviour
 
     public void ResetCoinSpawn()
     {
-        foreach (var coin in GetComponentsInChildren<Coin>(true))
+        foreach (var coin in GetComponentsInChildren<CoinTurn>(true))
             coin.gameObject.SetActive(true);
     }
 

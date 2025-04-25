@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }        
+        }
     }
 
     public void GameOver()
@@ -39,6 +39,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         gameOverPanel.SetActive(false);
     }
-}
 
-// 4 mapý çaðýr aralarýndan rastgele çaðýr
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
+    }
+}

@@ -439,37 +439,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151882653}
   m_CullTransparentMesh: 1
---- !u!1 &176586435
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 176586436}
-  m_Layer: 0
-  m_Name: Coins
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &176586436
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176586435}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &337695742
 GameObject:
   m_ObjectHideFlags: 0
@@ -859,37 +828,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 928146585}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &723894758
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 723894759}
-  m_Layer: 0
-  m_Name: Obstackles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &723894759
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723894758}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &737066349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,30 +1070,25 @@ MonoBehaviour:
   mapPrefabs:
   - {fileID: 2956068025782425211, guid: 4084b03f9b9398249bad9127adaa5dae, type: 3}
   - {fileID: 3091775986331930226, guid: 62014f7cb92a33f419377e4ff3292a46, type: 3}
-  - {fileID: 3091775986331930226, guid: c7db110bac14e1642880bb6e4ab58e7a, type: 3}
+  - {fileID: 3091775986331930226, guid: 64f3756481fcf074699e36b39dfa04f9, type: 3}
   - {fileID: 3091775986331930226, guid: 246177312612d7c4caaf9436b2ab73b3, type: 3}
   - {fileID: 3091775986331930226, guid: f1fbacd5fa6fcc8488d767c5175027c3, type: 3}
-  - {fileID: 3091775986331930226, guid: 64f3756481fcf074699e36b39dfa04f9, type: 3}
+  - {fileID: 3091775986331930226, guid: c7db110bac14e1642880bb6e4ab58e7a, type: 3}
   firstMap: {fileID: 4959837051454757728}
   mapsParent: {fileID: 1780483366}
   boat: {fileID: 1367602372}
-  obstackleSpawnParent: {fileID: 723894759}
-  coinSpawnParent: {fileID: 176586436}
+  ship: {fileID: 1648605583}
+  poolSize: 2
   levels:
-  - distanceThreshold: 500
-    minPrefabIndex: 0
-    maxPrefabIndex: 1
-  - distanceThreshold: 700
-    minPrefabIndex: 1
-    maxPrefabIndex: 3
   - distanceThreshold: 1000
-    minPrefabIndex: 2
-    maxPrefabIndex: 6
-  - distanceThreshold: 1300
     minPrefabIndex: 0
+    maxPrefabIndex: 3
+  - distanceThreshold: 1500
+    minPrefabIndex: 0
+    maxPrefabIndex: 4
+  - distanceThreshold: 2000
+    minPrefabIndex: 4
     maxPrefabIndex: 6
-  prefabIndex: 0
-  poolSize: 4
 --- !u!4 &883697673
 Transform:
   m_ObjectHideFlags: 0
@@ -1758,7 +1691,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1336112736}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1698621859}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ResetScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1336112736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1962,6 +1907,17 @@ MonoBehaviour:
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+--- !u!114 &1648605583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1983511333402764487, guid: e4628048a45af3a46b2022c2ab8808c2, type: 3}
+  m_PrefabInstance: {fileID: 5689645976465610087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c0fecb0f776e143a37c6a6d697f4a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1657707264
 GameObject:
   m_ObjectHideFlags: 0
@@ -8588,8 +8544,6 @@ SceneRoots:
   - {fileID: 476850006}
   - {fileID: 1416767628}
   - {fileID: 1780483366}
-  - {fileID: 723894759}
-  - {fileID: 176586436}
   - {fileID: 892612418}
   - {fileID: 883697673}
   - {fileID: 1698621860}

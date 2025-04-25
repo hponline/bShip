@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class CoinTurn : MonoBehaviour
 {
     public float spinSpeed;
 
