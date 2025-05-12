@@ -9,14 +9,7 @@ public class CoinManager : MonoBehaviour
     void Awake()
     {
         if (coinManagerInstance == null)
-        {
-            coinManagerInstance = this;
-            DontDestroyOnLoad(gameObject); 
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+            coinManagerInstance = this;       
     }
 
     public void AddCoin(int amount)
