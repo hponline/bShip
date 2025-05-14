@@ -472,7 +472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c0fecb0f776e143a37c6a6d697f4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: -100
+  moveSpeed: 100
+  minMoveSpeed: 50
   laneChangeSpeed: 2
   desiredLane: 0
 --- !u!54 &175994805

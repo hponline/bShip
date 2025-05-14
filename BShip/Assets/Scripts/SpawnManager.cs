@@ -65,7 +65,7 @@ public class SpawnManager : MonoBehaviour
         {
             currentLevel++;
             AddLevel(currentLevel);
-            ship.moveSpeed += 15;
+            //ship.moveSpeed += 15;
         }
 
         if (boat.position.z > nextSpawnZ - roadLength)
