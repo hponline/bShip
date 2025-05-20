@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class boatTrigger : MonoBehaviour
 {
@@ -7,7 +8,6 @@ public class boatTrigger : MonoBehaviour
     public Transform endPos;
     public float boatSpeed;
     bool deneme = false;
-
 
     private void OnTriggerEnter(Collider other)
     {

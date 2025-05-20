@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ShipController : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class ShipController : MonoBehaviour
     public float laneChangeSpeed; // Şerit değiştirme hızı
     public int desiredLane = 0; // Şerit 0 ortada demektir.
     int laneDistance = 53; // Yatay Şerit uzunlugu
+
+    public GameObject[] trafiklevhasi;
 
     Vector3 inputKey;
     void Update()
@@ -48,17 +51,40 @@ public class ShipController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Coin"))
+        if (other.CompareTag("Coin"))
         {
             GameManager.gameManagerInstance.coinText.text = "Coin: " + CoinManager.coinManagerInstance.GetCoinCount();
             other.gameObject.SetActive(false);
             CoinManager.coinManagerInstance.AddCoin(1);
         }
 
-        if (other.gameObject.CompareTag("Obstacle"))
+        if (other.CompareTag("Obstacle"))
         {
             GameManager.gameManagerInstance.GameOver();
         }
+
+        #region TrafikLevhasi
+        if (other.CompareTag("UyariLeft"))
+        {
+            trafiklevhasi[0].SetActive(true);            
+        }
+        if (other.CompareTag("UyariMid"))
+        {
+            trafiklevhasi[1].SetActive(true);            
+        }
+        if (other.CompareTag("UyariRight"))
+        {
+            trafiklevhasi[2].SetActive(true);            
+        }
+        else if (other.CompareTag("UyariDeactive"))
+        {            
+            for (int i = 0; i < trafiklevhasi.Length; i++)
+            {
+                trafiklevhasi[i].SetActive(false);
+            }
+        }
+        #endregion
+
 
     }
 }

@@ -7,6 +7,10 @@ TagManager:
   - Coin
   - Obstacle
   - endPos
+  - UyariDeactive
+  - UyariMid
+  - UyariLeft
+  - UyariRight
   layers:
   - Default
   - TransparentFX
