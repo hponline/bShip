@@ -6196,15 +6196,16 @@ MonoBehaviour:
   - {fileID: 3091775986331930226, guid: c7db110bac14e1642880bb6e4ab58e7a, type: 3}
   - {fileID: 3091775986331930226, guid: 64f3756481fcf074699e36b39dfa04f9, type: 3}
   - {fileID: 3091775986331930226, guid: f94f006a79b4ef1488fc45eaeaa64d15, type: 3}
+  - {fileID: 3091775986331930226, guid: 60ea667950c900b479154b113283adf9, type: 3}
   firstMap: {fileID: 4959837051454757728}
   mapsParent: {fileID: 1780483366}
   boat: {fileID: 543450653679576602}
   ship: {fileID: 175994804}
-  poolSize: 7
+  poolSize: 3
   levels:
   - distanceThreshold: 1000
-    minPrefabIndex: 0
-    maxPrefabIndex: 7
+    minPrefabIndex: 7
+    maxPrefabIndex: 8
 --- !u!4 &883697673
 Transform:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ public class SpawnManager : MonoBehaviour
     public LevelData[] levels;
     float startZ;
     float nextSpawnZ = 0f;
-    const float mapSpawnOffsetY = 11.77f;
+    const float mapSpawnOffsetY = 11.28f;
     const float roadLength = 682f;
     const float spawnDistance = 682; // oyuncudan uzaða spawn etmesi için
     const float despawnSpawnZ = 750f; // oyuncunun arkasýndaki mapler yok olur
