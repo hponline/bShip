@@ -699,7 +699,7 @@ GameObject:
   - component: {fileID: 214425821187149506}
   - component: {fileID: 8757149107832180225}
   m_Layer: 0
-  m_Name: startPos
+  m_Name: startPos1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1112,12 +1112,12 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2384479898575321277}
+  - {fileID: 4925123520129368545}
   - {fileID: 1053899557969706275}
   - {fileID: 8925843663488382724}
-  - {fileID: 4925123520129368545}
+  - {fileID: 6271170272952729145}
   - {fileID: 7472965294480229350}
   - {fileID: 5029385880184681429}
-  - {fileID: 6271170272952729145}
   m_Father: {fileID: 6853372996848343717}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1125515079049723876
@@ -1767,7 +1767,7 @@ GameObject:
   - component: {fileID: 5273981019810945983}
   - component: {fileID: 4103312118683766378}
   m_Layer: 0
-  m_Name: endPos0
+  m_Name: endPos1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1782,7 +1782,7 @@ Transform:
   m_GameObject: {fileID: 1556845696732357766}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1047}
+  m_LocalPosition: {x: 0, y: 0, z: 907.8}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3023,9 +3023,9 @@ Transform:
   - {fileID: 4524537105970577097}
   - {fileID: 5926131603224698124}
   - {fileID: 4081983029424534437}
-  - {fileID: 2075114619022412853}
-  - {fileID: 6536453963307346257}
   - {fileID: 2274724962118715170}
+  - {fileID: 6536453963307346257}
+  - {fileID: 2075114619022412853}
   - {fileID: 1834228706249222587}
   - {fileID: 5539907558332099275}
   m_Father: {fileID: 0}
@@ -3244,7 +3244,7 @@ GameObject:
   - component: {fileID: 250857593528234618}
   - component: {fileID: 7897720368977435625}
   m_Layer: 0
-  m_Name: endPos1
+  m_Name: endPos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3259,7 +3259,7 @@ Transform:
   m_GameObject: {fileID: 3427468991280734658}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53, y: 0, z: 1047}
+  m_LocalPosition: {x: 53, y: 0, z: 907.8}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3589,7 +3589,7 @@ GameObject:
   - component: {fileID: 7548409371966239932}
   - component: {fileID: 5317117577263147701}
   m_Layer: 0
-  m_Name: endPos2
+  m_Name: endPos0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3604,7 +3604,7 @@ Transform:
   m_GameObject: {fileID: 3614412816122149651}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -53, y: 0, z: 1047}
+  m_LocalPosition: {x: -53, y: 0, z: 907.8}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4523,7 +4523,7 @@ GameObject:
   - component: {fileID: 812614549120184443}
   - component: {fileID: 838551073048202718}
   m_Layer: 0
-  m_Name: startPos (2)
+  m_Name: startPos0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5603,7 +5603,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -20}
 --- !u!114 &2543870424008776213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5617,19 +5617,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcBoat:
-  - {fileID: 7767693253190166925}
-  - {fileID: 3293833529484692713}
   - {fileID: 7534900780899820186}
+  - {fileID: 3293833529484692713}
+  - {fileID: 7767693253190166925}
   boatSpeed: 100
-  spawnPoint: {fileID: 1964046134349648956}
+  spawnPoint:
+  - {fileID: 1737415292480528171}
+  - {fileID: 6718207853494939992}
+  - {fileID: 1964046134349648956}
+  spawnDelay:
+  - 2
+  - 5
+  - 6
   startPos:
+  - {fileID: 4925123520129368545}
   - {fileID: 1053899557969706275}
   - {fileID: 8925843663488382724}
-  - {fileID: 4925123520129368545}
   endPos:
+  - {fileID: 6271170272952729145}
   - {fileID: 7472965294480229350}
   - {fileID: 5029385880184681429}
-  - {fileID: 6271170272952729145}
   obstackleSpawn: {fileID: 2985239552080647118, guid: 351133d0dd96ee64db16bf4611edbcae, type: 3}
 --- !u!1 &5168165042949092848
 GameObject:
@@ -5844,7 +5851,7 @@ GameObject:
   - component: {fileID: 1970101695880448183}
   - component: {fileID: 7401640312798703139}
   m_Layer: 0
-  m_Name: startPos (1)
+  m_Name: startPos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11737,19 +11744,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 477998090776370188, guid: f34c338034a027045a9394ba793b6ded, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
+    - target: {fileID: 1460720463331989770, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: m_Name
+      value: spawnPoint0
       objectReference: {fileID: 0}
     - target: {fileID: 8188136349620926900, guid: f34c338034a027045a9394ba793b6ded, type: 3}
       propertyPath: m_Name
-      value: boatmodel8 (1)
+      value: boatmodel80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+--- !u!4 &1737415292480528171 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 85507880645854213, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+  m_PrefabInstance: {fileID: 1815868699975260974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2274724962118715170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 477998090776370188, guid: f34c338034a027045a9394ba793b6ded, type: 3}
@@ -11812,9 +11824,13 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1460720463331989770, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: m_Name
+      value: spawnPoint2
+      objectReference: {fileID: 0}
     - target: {fileID: 8188136349620926900, guid: f34c338034a027045a9394ba793b6ded, type: 3}
       propertyPath: m_Name
-      value: boatmodel8
+      value: boatmodel82
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11950,9 +11966,13 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1460720463331989770, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: m_Name
+      value: spawnPoint1
+      objectReference: {fileID: 0}
     - target: {fileID: 8188136349620926900, guid: f34c338034a027045a9394ba793b6ded, type: 3}
       propertyPath: m_Name
-      value: boatmodel8 (2)
+      value: boatmodel81
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11967,5 +11987,10 @@ GameObject:
 --- !u!4 &6536453963307346257 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 477998090776370188, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+  m_PrefabInstance: {fileID: 6634952908719437149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6718207853494939992 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 85507880645854213, guid: f34c338034a027045a9394ba793b6ded, type: 3}
   m_PrefabInstance: {fileID: 6634952908719437149}
   m_PrefabAsset: {fileID: 0}

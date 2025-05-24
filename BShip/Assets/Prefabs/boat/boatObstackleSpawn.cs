@@ -5,74 +5,88 @@ public class boatObstackleSpawn : MonoBehaviour
 {
     public GameObject[] npcBoat;
     public float boatSpeed;
-    public Transform spawnPoint;
+    public Transform[] spawnPoint;
+    public float[] spawnDelay;
     public Transform[] startPos;
     public Transform[] endPos;
     public GameObject obstackleSpawn;
     bool npcSpawnerActive = false;
+
+    Coroutine[] spawnCoroutines;
+
+    private void Start()
+    {
+        spawnCoroutines = new Coroutine[startPos.Length];
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             npcSpawnerActive = true;
-            StartCoroutine(NpcObstackleSpawner());
-
         }
     }
     private void Update()
     {
         if (npcSpawnerActive)
         {
-            for (int i = 0; i < startPos.Length; i++)
-            {
-                npcBoat[i].transform.position = Vector3.MoveTowards(npcBoat[i].transform.position, endPos[i].transform.position, boatSpeed * Time.deltaTime);
-            }
-
+            MoveBoatsToTarget();
+            StartObstacleSpawning();
         }
 
-        bool allReached = true;
-        for (int i = 0; i < npcBoat.Length; i++)
-        {
-            if (Vector3.Distance(npcBoat[i].transform.position, endPos[i].position) > 0.1f)
-            {
-                allReached = false;
-                break;
-            }
-        }
-
-        if (allReached)
+        if (npcSpawnerActive && AllBoatsReachedTarget())
         {
             npcSpawnerActive = false;
-
-            for (int i = 0; i < npcBoat.Length; i++)
-            {
-                npcBoat[i].transform.position = startPos[i].position;
-            }
+            ResetBoatsToStart();
         }
-
-
-        //if (npcBoat.transform.position == endPos.position)
-        //{
-        //    npcSpawnerActive = false;
-        //    for (int i = 0; i < startPos.Length; i++)
-        //    {
-        //        npcBoat[i].transform.position = startPos[i].position;
-        //    }
-        //}
     }
 
-    IEnumerator NpcObstackleSpawner()
+    public void MoveBoatsToTarget()
+    {
+        for (int i = 0; i < startPos.Length; i++)
+        {
+            npcBoat[i].transform.position = Vector3.MoveTowards(npcBoat[i].transform.position, endPos[i].transform.position, boatSpeed * Time.deltaTime);
+        }
+    }
+
+    public bool AllBoatsReachedTarget()
+    {
+        for (int i = 0; i < npcBoat.Length; i++)
+        {
+            if (Vector3.Distance(npcBoat[i].transform.position, endPos[i].position) > 1f)
+                return false;
+        }
+        return true;
+    }
+
+    public void ResetBoatsToStart()
+    {
+        for (int i = 0; i < npcBoat.Length; i++)
+        {
+            npcBoat[i].transform.position = startPos[i].position;
+        }
+    }
+
+    public void StartObstacleSpawning()
+    {
+        for (int i = 0; i < spawnPoint.Length; i++)
+        {
+            if (spawnCoroutines[i] == null)
+            {
+                spawnCoroutines[i] = StartCoroutine(NpcObstackleSpawner(i, spawnDelay[i]));
+            }
+        }
+    }
+
+    IEnumerator NpcObstackleSpawner(int index, float delay)
     {
         while (true)
         {
-
-            GameObject temp = Instantiate(obstackleSpawn, spawnPoint.transform.position, Quaternion.identity);
+            GameObject temp = Instantiate(obstackleSpawn, spawnPoint[index].transform.position, Quaternion.identity);
 
             Destroy(temp, 5);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(delay);
         }
     }
-
-}  
-// Tekneler iç içe geçiyor, sadece biri spawn ediyor düzelt
+}
+// Animasyon ile engellerin büyüyüp küçülmesi yapýlacak

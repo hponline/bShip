@@ -6204,8 +6204,8 @@ MonoBehaviour:
   poolSize: 3
   levels:
   - distanceThreshold: 1000
-    minPrefabIndex: 7
-    maxPrefabIndex: 8
+    minPrefabIndex: 6
+    maxPrefabIndex: 5
 --- !u!4 &883697673
 Transform:
   m_ObjectHideFlags: 0
