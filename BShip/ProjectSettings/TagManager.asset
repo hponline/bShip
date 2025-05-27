@@ -12,6 +12,7 @@ TagManager:
   - UyariLeft
   - UyariRight
   - NpcSpawner
+  - UyariSlow
   layers:
   - Default
   - TransparentFX

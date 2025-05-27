@@ -76,6 +76,10 @@ public class ShipController : MonoBehaviour
         {
             trafiklevhasi[2].SetActive(true);            
         }
+        if (other.CompareTag("UyariSlow"))
+        {
+            trafiklevhasi[3].SetActive(true);
+        }
         else if (other.CompareTag("UyariDeactive"))
         {            
             for (int i = 0; i < trafiklevhasi.Length; i++)

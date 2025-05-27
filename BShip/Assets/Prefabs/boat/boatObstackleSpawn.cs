@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class boatObstackleSpawn : MonoBehaviour
 {
@@ -14,9 +15,17 @@ public class boatObstackleSpawn : MonoBehaviour
 
     Coroutine[] spawnCoroutines;
 
-    private void Start()
+    private void OnEnable()
     {
-        spawnCoroutines = new Coroutine[startPos.Length];
+        if (spawnCoroutines == null || spawnCoroutines.Length != startPos.Length)
+            spawnCoroutines = new Coroutine[startPos.Length];
+
+        npcSpawnerActive = false;
+
+        for (int i = 0; i < npcBoat.Length; i++)
+        {
+            npcBoat[i].transform.position = startPos[i].position;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,6 +46,7 @@ public class boatObstackleSpawn : MonoBehaviour
         if (npcSpawnerActive && AllBoatsReachedTarget())
         {
             npcSpawnerActive = false;
+            StopObstacleSpawning();
             ResetBoatsToStart();
         }
     }
@@ -57,6 +67,20 @@ public class boatObstackleSpawn : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    public void StopObstacleSpawning()
+    {
+        if (spawnCoroutines == null) return;
+
+        for (int i = 0; i < spawnCoroutines.Length; i++)
+        {
+            if (spawnCoroutines != null)
+            {
+                StopCoroutine(spawnCoroutines[i]);
+                spawnCoroutines[i] = null;
+            }
+        }
     }
 
     public void ResetBoatsToStart()
@@ -83,10 +107,18 @@ public class boatObstackleSpawn : MonoBehaviour
         while (true)
         {
             GameObject temp = Instantiate(obstackleSpawn, spawnPoint[index].transform.position, Quaternion.identity);
+            temp.transform.localScale = Vector3.zero;
+            temp.transform.DOScale(Vector3.one * 9f, 0.5f).SetEase(Ease.OutBack);
+            yield return new WaitForSeconds(4.5f);
 
-            Destroy(temp, 5);
-            yield return new WaitForSeconds(delay);
+            temp.transform.DOScale(Vector3.zero, 0.5f)
+            .SetEase(Ease.InBack)
+            .OnComplete(() =>
+            {
+                Destroy(temp);
+            });
+
+            yield return new WaitForSeconds(0.5f + delay);
         }
     }
 }
-// Animasyon ile engellerin büyüyüp küçülmesi yapýlacak
