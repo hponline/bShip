@@ -3,7 +3,7 @@ using static UnityEditor.Progress;
 
 public class ShipController : MonoBehaviour
 {
-    public float moveSpeed = 100f;
+    public float maxMoveSpeed = 100f;
     public float minMoveSpeed = 50f;
     public float laneChangeSpeed; // Şerit değiştirme hızı
     public int desiredLane = 0; // Şerit 0 ortada demektir.
@@ -33,7 +33,7 @@ public class ShipController : MonoBehaviour
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             inputKey = new Vector3(0, 0, Input.GetAxis("Vertical"));
-            transform.position += moveSpeed * Time.deltaTime * inputKey;
+            transform.position += maxMoveSpeed * Time.deltaTime * inputKey;
         }
 
         // Şerit sınır

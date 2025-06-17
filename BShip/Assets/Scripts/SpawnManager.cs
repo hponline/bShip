@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [System.Serializable]
@@ -33,13 +34,14 @@ public class SpawnManager : MonoBehaviour
     const float roadLength = 682f;
     const float spawnDistance = 682; // oyuncudan uzaða spawn etmesi için
     const float despawnSpawnZ = 750f; // oyuncunun arkasýndaki mapler yok olur
+    public TextMeshProUGUI text;
     int currentLevel = 0;
+    int currentMapIndex = 0;
 
 
     private void Awake()
     {
         startZ = boat.position.z;
-
         var lvl0 = levels[0];
         for (int i = lvl0.minPrefabIndex; i < lvl0.maxPrefabIndex; i++)
             allowedPrefab.Add(i);
@@ -54,24 +56,30 @@ public class SpawnManager : MonoBehaviour
         }
 
         for (int i = 0; i < poolSize; i++)
-            CreateRoad();        
+            CreateRoad();
     }
 
     private void Update()
     {
         float traveled = boat.position.z - startZ;
 
+        text.text = traveled.ToString("F0") + "m";
+
         while (currentLevel + 1 < levels.Length && traveled >= levels[currentLevel + 1].distanceThreshold)
         {
             currentLevel++;
             AddLevel(currentLevel);
-            //ship.moveSpeed += 15;
         }
 
         if (boat.position.z > nextSpawnZ - roadLength)
         {
             CreateRoad();
-            Destroy(firstMap); // Baþlangýç Zemini
+
+            if (firstMap != null)
+            {
+                Destroy(firstMap); // Baþlangýç Zemini
+                firstMap = null;
+            }
         }
         RecycleOldMap();
     }
@@ -79,16 +87,15 @@ public class SpawnManager : MonoBehaviour
     void AddLevel(int lvl)
     {
         var data = levels[lvl];
-        for (int i = data.minPrefabIndex; i < data.maxPrefabIndex; i++)        
+        for (int i = data.minPrefabIndex; i <= data.maxPrefabIndex; i++)
             allowedPrefab.Add(i);
 
-        for (int i = 0; i < poolSize; i++)
+        for (int i = data.minPrefabIndex; i <= data.maxPrefabIndex; i++)
         {
-            int index = Random.Range(data.minPrefabIndex, data.maxPrefabIndex);
-            GameObject obj = Instantiate(mapPrefabs[index], Vector3.zero, Quaternion.identity, mapsParent.transform);
+            GameObject obj = Instantiate(mapPrefabs[i], Vector3.zero, Quaternion.identity, mapsParent.transform);
             obj.SetActive(false);
             mapPool.Enqueue(obj);
-        }        
+        }
     }
 
     void CreateRoad() // Map üretme
@@ -98,7 +105,6 @@ public class SpawnManager : MonoBehaviour
         mapPart.SetActive(true);
 
         mapPart.GetComponent<ResetCoin>()?.ResetCoinSpawn(); // Coin Reset
-
         nextSpawnZ += roadLength;
         activeMaps.Add(mapPart);
     }
@@ -120,12 +126,19 @@ public class SpawnManager : MonoBehaviour
     {
         if (mapPool.Count > 0)
         {
-            return mapPool.Dequeue();            
+            return mapPool.Dequeue();
         }
         else
         {
-            int index = allowedPrefab[Random.Range(0, allowedPrefab.Count)];
+            //int index = allowedPrefab[Random.Range(0, allowedPrefab.Count)];
+            //return Instantiate(mapPrefabs[index], mapsParent.transform);
+
+            int index = allowedPrefab[currentMapIndex];
+            currentMapIndex = (currentMapIndex + 1) % allowedPrefab.Count;
             return Instantiate(mapPrefabs[index], mapsParent.transform);
+
+            //GameObject obj = Instantiate(mapPrefabs[currentMapIndex], mapsParent.transform);  
+            //return obj;
         }
     }
 }
