@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c0fecb0f776e143a37c6a6d697f4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 100
+  maxMoveSpeed: 100
   minMoveSpeed: 50
   laneChangeSpeed: 2
   desiredLane: 0
@@ -6208,8 +6208,8 @@ MonoBehaviour:
   poolSize: 3
   levels:
   - distanceThreshold: 1000
-    minPrefabIndex: 0
-    maxPrefabIndex: 3
+    minPrefabIndex: 8
+    maxPrefabIndex: 8
   - distanceThreshold: 1500
     minPrefabIndex: 4
     maxPrefabIndex: 6

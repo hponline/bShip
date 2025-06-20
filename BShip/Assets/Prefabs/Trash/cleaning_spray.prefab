@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3409958946423616380}
   - component: {fileID: 2329647326111725666}
   - component: {fileID: 5545077376883993088}
-  - component: {fileID: 7196072723322192188}
+  - component: {fileID: 5710400649023823654}
   m_Layer: 0
   m_Name: cleaning_spray
   m_TagString: Obstacle
@@ -128,7 +128,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.09917472, y: 0.2690931, z: 0.059979312}
   m_Center: {x: 0.0010563005, y: 0.13454655, z: -0.00000010523945}
---- !u!54 &7196072723322192188
+--- !u!54 &5710400649023823654
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

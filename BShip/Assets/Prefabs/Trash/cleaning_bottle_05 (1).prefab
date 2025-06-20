@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8560117696971320253}
   - component: {fileID: 7190794853311644001}
   - component: {fileID: 5240628736153867992}
-  - component: {fileID: 7938655616363665981}
+  - component: {fileID: 5444871784530789016}
   m_Layer: 0
   m_Name: cleaning_bottle_05 (1)
   m_TagString: Obstacle
@@ -128,7 +128,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.10988851, y: 0.30244422, z: 0.10990639}
   m_Center: {x: 0.0000011119992, y: 0.15122223, z: -0.0000000055879354}
---- !u!54 &7938655616363665981
+--- !u!54 &5444871784530789016
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
