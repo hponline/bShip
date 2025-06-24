@@ -523,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &329950221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6205,15 +6205,15 @@ MonoBehaviour:
   mapsParent: {fileID: 1780483366}
   boat: {fileID: 543450653679576602}
   ship: {fileID: 175994804}
-  poolSize: 3
+  poolSize: 2
   levels:
   - distanceThreshold: 1000
     minPrefabIndex: 8
-    maxPrefabIndex: 8
-  - distanceThreshold: 1500
+    maxPrefabIndex: 10
+  - distanceThreshold: 15000
     minPrefabIndex: 4
     maxPrefabIndex: 6
-  - distanceThreshold: 2000
+  - distanceThreshold: 20000
     minPrefabIndex: 6
     maxPrefabIndex: 9
   text: {fileID: 1484285250}

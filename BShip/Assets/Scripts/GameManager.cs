@@ -20,10 +20,9 @@ public class GameManager : MonoBehaviour
             gameManagerInstance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
-        {
+        else        
             Destroy(gameObject);
-        }
+        
     }
 
     public void GameOver()

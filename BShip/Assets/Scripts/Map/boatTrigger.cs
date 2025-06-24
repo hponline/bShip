@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class boatTrigger : MonoBehaviour
+public class BoatTrigger : MonoBehaviour
 {
     public GameObject boat;
     public Transform startPos;

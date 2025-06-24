@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 3562802034200910395}
   - component: {fileID: 6968769665370794670}
   m_Layer: 0
-  m_Name: default
+  m_Name: cardboard_box_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,7 +10,7 @@ public class SplashTrigger : MonoBehaviour
     {
         if (!splashedObject.Contains(other.gameObject))
         {
-            Instantiate(splashEffekt, other.transform.transform.position, Quaternion.identity);
+            Instantiate(splashEffekt, other.transform.transform.position, Quaternion.identity, transform);
             splashedObject.Add(other.gameObject);
         }
     }

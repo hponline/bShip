@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 
-public class boatObstackleSpawn : MonoBehaviour
+public class BoatObstackleSpawn : MonoBehaviour
 {
     public GameObject[] npcBoat;
     public float boatSpeed;
@@ -51,11 +51,28 @@ public class boatObstackleSpawn : MonoBehaviour
         }
     }
 
+    //public void MoveBoatsToTarget()
+    //{
+    //    for (int i = 0; i < startPos.Length; i++)        
+    //        npcBoat[i].transform.position = Vector3.MoveTowards(npcBoat[i].transform.position, endPos[i].transform.position, boatSpeed * Time.deltaTime);        
+    //}
+
     public void MoveBoatsToTarget()
     {
         for (int i = 0; i < startPos.Length; i++)
         {
-            npcBoat[i].transform.position = Vector3.MoveTowards(npcBoat[i].transform.position, endPos[i].transform.position, boatSpeed * Time.deltaTime);
+            GameObject boat = npcBoat[i];
+            Vector3 target = endPos[i].transform.position;
+            boat.transform.position = Vector3.MoveTowards(boat.transform.position, target, boatSpeed * Time.deltaTime);
+            BoatScale fade = boat.GetComponentInChildren<BoatScale>();                            
+
+            if (Vector3.Distance(boat.transform.position, target) < 0.5f)
+            {
+                if (fade != null)
+                {
+                    fade.FadeOutAndDisable(2f);
+                }
+            }
         }
     }
 
@@ -83,12 +100,10 @@ public class boatObstackleSpawn : MonoBehaviour
         }
     }
 
-    public void ResetBoatsToStart()
+    public void ResetBoatsToStart() // Reset iþlemine bakýlacak scale için
     {
         for (int i = 0; i < npcBoat.Length; i++)
-        {
             npcBoat[i].transform.position = startPos[i].position;
-        }
     }
 
     public void StartObstacleSpawning()
@@ -96,9 +111,7 @@ public class boatObstackleSpawn : MonoBehaviour
         for (int i = 0; i < spawnPoint.Length; i++)
         {
             if (spawnCoroutines[i] == null)
-            {
                 spawnCoroutines[i] = StartCoroutine(NpcObstackleSpawner(i, spawnDelay[i]));
-            }
         }
     }
 
