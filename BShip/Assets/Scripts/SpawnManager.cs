@@ -28,13 +28,13 @@ public class SpawnManager : MonoBehaviour
     [Header("Map Variables")]
     public int poolSize = 5;
     public LevelData[] levels;
+    public TextMeshProUGUI text;
     float startZ;
     float nextSpawnZ = 0f;
     const float mapSpawnOffsetY = 11.28f;
     const float roadLength = 682f;
     const float spawnDistance = 682; // oyuncudan uzaða spawn etmesi için
     const float despawnSpawnZ = 750f; // oyuncunun arkasýndaki mapler yok olur
-    public TextMeshProUGUI text;
     int currentLevel = 0;
     int currentMapIndex = 0;
 
@@ -130,15 +130,9 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            //int index = allowedPrefab[Random.Range(0, allowedPrefab.Count)];
-            //return Instantiate(mapPrefabs[index], mapsParent.transform);
-
             int index = allowedPrefab[currentMapIndex];
             currentMapIndex = (currentMapIndex + 1) % allowedPrefab.Count;
             return Instantiate(mapPrefabs[index], mapsParent.transform);
-
-            //GameObject obj = Instantiate(mapPrefabs[currentMapIndex], mapsParent.transform);  
-            //return obj;
         }
     }
 }

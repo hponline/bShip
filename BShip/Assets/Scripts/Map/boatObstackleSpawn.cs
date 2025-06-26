@@ -15,8 +15,13 @@ public class BoatObstackleSpawn : MonoBehaviour
 
     Coroutine[] spawnCoroutines;
 
+    [Header("Script")]
+    public NpcThrowObstacle npcThrowObstacleScript;
+
     private void OnEnable()
     {
+        npcThrowObstacleScript = GetComponent<NpcThrowObstacle>();
+
         if (spawnCoroutines == null || spawnCoroutines.Length != startPos.Length)
             spawnCoroutines = new Coroutine[startPos.Length];
 
@@ -33,6 +38,7 @@ public class BoatObstackleSpawn : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             npcSpawnerActive = true;
+            npcThrowObstacleScript.StartThrowing(); // null dönüyo
         }
     }
     private void Update()
@@ -51,27 +57,20 @@ public class BoatObstackleSpawn : MonoBehaviour
         }
     }
 
-    //public void MoveBoatsToTarget()
-    //{
-    //    for (int i = 0; i < startPos.Length; i++)        
-    //        npcBoat[i].transform.position = Vector3.MoveTowards(npcBoat[i].transform.position, endPos[i].transform.position, boatSpeed * Time.deltaTime);        
-    //}
-
     public void MoveBoatsToTarget()
     {
         for (int i = 0; i < startPos.Length; i++)
         {
             GameObject boat = npcBoat[i];
             Vector3 target = endPos[i].transform.position;
-            boat.transform.position = Vector3.MoveTowards(boat.transform.position, target, boatSpeed * Time.deltaTime);
-            BoatScale fade = boat.GetComponentInChildren<BoatScale>();                            
 
-            if (Vector3.Distance(boat.transform.position, target) < 0.5f)
+            boat.transform.position = Vector3.MoveTowards(boat.transform.position, target, boatSpeed * Time.deltaTime);
+
+            if (Vector3.Distance(boat.transform.position, target) < 30f)
             {
+                BoatScale fade = boat.GetComponentInChildren<BoatScale>();
                 if (fade != null)
-                {
-                    fade.FadeOutAndDisable(2f);
-                }
+                    fade.FadeOutAndDisable(3f);
             }
         }
     }
@@ -100,10 +99,12 @@ public class BoatObstackleSpawn : MonoBehaviour
         }
     }
 
-    public void ResetBoatsToStart() // Reset iþlemine bakýlacak scale için
+    public void ResetBoatsToStart()
     {
         for (int i = 0; i < npcBoat.Length; i++)
+        {
             npcBoat[i].transform.position = startPos[i].position;
+        }
     }
 
     public void StartObstacleSpawning()
@@ -122,7 +123,7 @@ public class BoatObstackleSpawn : MonoBehaviour
             GameObject temp = Instantiate(obstackleSpawn, spawnPoint[index].transform.position, Quaternion.identity);
             temp.transform.localScale = Vector3.zero;
             temp.transform.DOScale(Vector3.one * 9f, 0.5f).SetEase(Ease.OutBack);
-            yield return new WaitForSeconds(4.5f);
+            yield return new WaitForSeconds(1.5f); // Atýþlar arasý süre
 
             temp.transform.DOScale(Vector3.zero, 0.5f)
             .SetEase(Ease.InBack)
@@ -131,7 +132,7 @@ public class BoatObstackleSpawn : MonoBehaviour
                 Destroy(temp);
             });
 
-            yield return new WaitForSeconds(0.5f + delay);
+            yield return new WaitForSeconds(0.5f + delay); // Atýþtan sonraki bekleme süresi
         }
     }
 }
