@@ -1,36 +1,36 @@
-using System.Collections;
 using UnityEngine;
-using DG.Tweening;
+
 
 public class BoatObstackleSpawn : MonoBehaviour
 {
+    [Header("Boat Setup")]
     public GameObject[] npcBoat;
-    public float boatSpeed;
     public Transform[] spawnPoint;
-    public float[] spawnDelay;
     public Transform[] startPos;
     public Transform[] endPos;
-    public GameObject obstackleSpawn;
+    public float boatSpeed;
     bool npcSpawnerActive = false;
 
-    Coroutine[] spawnCoroutines;
+    [Header("Obstacle")]
+    public GameObject obstackleSpawn;
 
-    [Header("Script")]
-    public NpcThrowObstacle npcThrowObstacleScript;
+    NpcThrowObstacle[] npcThrowScript;
 
     private void OnEnable()
     {
-        npcThrowObstacleScript = GetComponent<NpcThrowObstacle>();
+        #region Engel fýrlatma
 
-        if (spawnCoroutines == null || spawnCoroutines.Length != startPos.Length)
-            spawnCoroutines = new Coroutine[startPos.Length];
+        npcThrowScript = new NpcThrowObstacle[npcBoat.Length];
+        for (int i = 0; i < npcBoat.Length; i++)
+        {
+            npcThrowScript[i] = npcBoat[i].GetComponentInChildren<NpcThrowObstacle>();
+        }
+        #endregion
 
         npcSpawnerActive = false;
 
-        for (int i = 0; i < npcBoat.Length; i++)
-        {
-            npcBoat[i].transform.position = startPos[i].position;
-        }
+        for (int i = 0; i < npcBoat.Length; i++)        
+            npcBoat[i].transform.position = startPos[i].position;        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,7 +38,11 @@ public class BoatObstackleSpawn : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             npcSpawnerActive = true;
-            npcThrowObstacleScript.StartThrowing(); // null dönüyo
+
+            foreach (var script in npcThrowScript)
+            {
+                script?.StartThrowing();
+            }
         }
     }
     private void Update()
@@ -46,7 +50,6 @@ public class BoatObstackleSpawn : MonoBehaviour
         if (npcSpawnerActive)
         {
             MoveBoatsToTarget();
-            StartObstacleSpawning();
         }
 
         if (npcSpawnerActive && AllBoatsReachedTarget())
@@ -70,7 +73,7 @@ public class BoatObstackleSpawn : MonoBehaviour
             {
                 BoatScale fade = boat.GetComponentInChildren<BoatScale>();
                 if (fade != null)
-                    fade.FadeOutAndDisable(3f);
+                    fade.FadeOutAndDisable(2f);
             }
         }
     }
@@ -87,15 +90,9 @@ public class BoatObstackleSpawn : MonoBehaviour
 
     public void StopObstacleSpawning()
     {
-        if (spawnCoroutines == null) return;
-
-        for (int i = 0; i < spawnCoroutines.Length; i++)
+        foreach (var script in npcThrowScript)
         {
-            if (spawnCoroutines != null)
-            {
-                StopCoroutine(spawnCoroutines[i]);
-                spawnCoroutines[i] = null;
-            }
+            script?.StopThrowing();
         }
     }
 
@@ -104,35 +101,6 @@ public class BoatObstackleSpawn : MonoBehaviour
         for (int i = 0; i < npcBoat.Length; i++)
         {
             npcBoat[i].transform.position = startPos[i].position;
-        }
-    }
-
-    public void StartObstacleSpawning()
-    {
-        for (int i = 0; i < spawnPoint.Length; i++)
-        {
-            if (spawnCoroutines[i] == null)
-                spawnCoroutines[i] = StartCoroutine(NpcObstackleSpawner(i, spawnDelay[i]));
-        }
-    }
-
-    IEnumerator NpcObstackleSpawner(int index, float delay)
-    {
-        while (true)
-        {
-            GameObject temp = Instantiate(obstackleSpawn, spawnPoint[index].transform.position, Quaternion.identity);
-            temp.transform.localScale = Vector3.zero;
-            temp.transform.DOScale(Vector3.one * 9f, 0.5f).SetEase(Ease.OutBack);
-            yield return new WaitForSeconds(1.5f); // Atýþlar arasý süre
-
-            temp.transform.DOScale(Vector3.zero, 0.5f)
-            .SetEase(Ease.InBack)
-            .OnComplete(() =>
-            {
-                Destroy(temp);
-            });
-
-            yield return new WaitForSeconds(0.5f + delay); // Atýþtan sonraki bekleme süresi
         }
     }
 }

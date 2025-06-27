@@ -6200,7 +6200,8 @@ MonoBehaviour:
   - {fileID: 3091775986331930226, guid: 078537b0024f5504daf3af7fe1279d0e, type: 3}
   - {fileID: 3091775986331930226, guid: c7db110bac14e1642880bb6e4ab58e7a, type: 3}
   - {fileID: 3091775986331930226, guid: 78182a6b54551bb4f995ddd36b166522, type: 3}
-  - {fileID: 3091775986331930226, guid: 60ea667950c900b479154b113283adf9, type: 3}
+  - {fileID: 3091775986331930226, guid: c8c261d84958c724aaf73e3f54f8d79f, type: 3}
+  - {fileID: 3091775986331930226, guid: c8c261d84958c724aaf73e3f54f8d79f, type: 3}
   firstMap: {fileID: 4959837051454757728}
   mapsParent: {fileID: 1780483366}
   boat: {fileID: 543450653679576602}
@@ -6208,8 +6209,8 @@ MonoBehaviour:
   poolSize: 2
   levels:
   - distanceThreshold: 1000
-    minPrefabIndex: 8
-    maxPrefabIndex: 10
+    minPrefabIndex: 9
+    maxPrefabIndex: 11
   - distanceThreshold: 15000
     minPrefabIndex: 4
     maxPrefabIndex: 6

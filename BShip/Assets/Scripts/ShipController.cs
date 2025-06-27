@@ -5,9 +5,9 @@ public class ShipController : MonoBehaviour
 {
     public float maxMoveSpeed = 100f;
     public float minMoveSpeed = 50f;
-    public float laneChangeSpeed; // Şerit değiştirme hızı
+    public float laneChangeSpeed;
     public int desiredLane = 0; // Şerit 0 ortada demektir.
-    int laneDistance = 53; // Yatay Şerit uzunlugu
+    readonly int laneDistance = 53; // Yatay Şerit uzunlugu
 
     public GameObject[] trafiklevhasi;
 
