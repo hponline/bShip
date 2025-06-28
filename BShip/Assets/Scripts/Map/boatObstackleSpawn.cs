@@ -54,8 +54,7 @@ public class BoatObstackleSpawn : MonoBehaviour
 
         if (npcSpawnerActive && AllBoatsReachedTarget())
         {
-            npcSpawnerActive = false;
-            StopObstacleSpawning();
+            npcSpawnerActive = false;            
             ResetBoatsToStart();
         }
     }
@@ -69,8 +68,11 @@ public class BoatObstackleSpawn : MonoBehaviour
 
             boat.transform.position = Vector3.MoveTowards(boat.transform.position, target, boatSpeed * Time.deltaTime);
 
-            if (Vector3.Distance(boat.transform.position, target) < 30f)
+            float distance = Vector3.Distance(boat.transform.position, target);
+            if (distance < 30f)
             {
+                StopObstacleSpawning(); // Spawn Durdur
+
                 BoatScale fade = boat.GetComponentInChildren<BoatScale>();
                 if (fade != null)
                     fade.FadeOutAndDisable(2f);

@@ -13973,6 +13973,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3539761644638613355, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: delay.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3539761644638613355, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: delay.Array.data[1]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3539761644638613355, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: delay.Array.data[2]
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8188136349620926900, guid: f34c338034a027045a9394ba793b6ded, type: 3}
       propertyPath: m_Name
       value: boatmodel80
@@ -14045,10 +14057,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3539761644638613355, guid: f34c338034a027045a9394ba793b6ded, type: 3}
-      propertyPath: obstaclePrefab
-      value: 
-      objectReference: {fileID: 2985239552080647118, guid: 351133d0dd96ee64db16bf4611edbcae, type: 3}
     - target: {fileID: 8188136349620926900, guid: f34c338034a027045a9394ba793b6ded, type: 3}
       propertyPath: m_Name
       value: boatmodel82
@@ -14120,6 +14128,18 @@ PrefabInstance:
     - target: {fileID: 477998090776370188, guid: f34c338034a027045a9394ba793b6ded, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3539761644638613355, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: delay.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3539761644638613355, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: delay.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3539761644638613355, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: delay.Array.data[2]
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8188136349620926900, guid: f34c338034a027045a9394ba793b6ded, type: 3}
       propertyPath: m_Name

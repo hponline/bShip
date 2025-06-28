@@ -1479,14 +1479,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1ee5335a45dc44696beb70e4e75ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwGameObjectPrefab: {fileID: 2985239552080647118, guid: 351133d0dd96ee64db16bf4611edbcae, type: 3}
-  ObstaclePrefab: {fileID: 2985239552080647118, guid: 351133d0dd96ee64db16bf4611edbcae, type: 3}
+  obstaclePrefab: {fileID: 2985239552080647118, guid: 351133d0dd96ee64db16bf4611edbcae, type: 3}
   startPos: {fileID: 7570930755940437995}
   targetPos: {fileID: 85507880645854213}
   delay:
-  - 10
-  - 20
-  - 30
+  - 2
+  - 5
+  - 6
 --- !u!1 &4378841256279600697
 GameObject:
   m_ObjectHideFlags: 0
