@@ -7503,7 +7503,7 @@ MonoBehaviour:
   - {fileID: 6271170272952729145}
   - {fileID: 7472965294480229350}
   - {fileID: 5029385880184681429}
-  boatSpeed: 40
+  boatSpeed: 50
   obstackleSpawn: {fileID: 2985239552080647118, guid: 351133d0dd96ee64db16bf4611edbcae, type: 3}
 --- !u!1 &5168165042949092848
 GameObject:

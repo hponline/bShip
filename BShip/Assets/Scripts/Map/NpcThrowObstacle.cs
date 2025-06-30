@@ -4,7 +4,6 @@ using DG.Tweening;
 
 public class NpcThrowObstacle : MonoBehaviour
 {
-    //public GameObject throwGameObjectPrefab;
     public GameObject obstaclePrefab;
     public Transform startPos;
     public Transform targetPos;

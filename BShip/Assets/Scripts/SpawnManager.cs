@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -43,12 +44,12 @@ public class SpawnManager : MonoBehaviour
     {
         startZ = boat.position.z;
         var lvl0 = levels[0];
-        for (int i = lvl0.minPrefabIndex; i < lvl0.maxPrefabIndex; i++)
+        for (int i = lvl0.minPrefabIndex; i <= lvl0.maxPrefabIndex; i++)
             allowedPrefab.Add(i);
 
         for (int i = 0; i < poolSize; i++) // Mapler oluþturuldu
         {
-            int index = Random.Range(lvl0.minPrefabIndex, lvl0.maxPrefabIndex);
+            int index = Random.Range(lvl0.minPrefabIndex, lvl0.maxPrefabIndex +1);
             GameObject obj = Instantiate(mapPrefabs[index], Vector3.zero, Quaternion.identity, mapsParent.transform);
 
             obj.SetActive(false);
@@ -87,15 +88,26 @@ public class SpawnManager : MonoBehaviour
     void AddLevel(int lvl)
     {
         var data = levels[lvl];
-        for (int i = data.minPrefabIndex; i <= data.maxPrefabIndex; i++)
-            allowedPrefab.Add(i);
+        int minIndex = Mathf.Clamp(data.minPrefabIndex, 0, mapPrefabs.Length - 1);
+        int maxIndex = Mathf.Clamp(data.maxPrefabIndex, 0, mapPrefabs.Length - 1);
 
-        for (int i = data.minPrefabIndex; i <= data.maxPrefabIndex; i++)
+        for (int i = minIndex; i < maxIndex; i++)
         {
+            allowedPrefab.Add(i);
             GameObject obj = Instantiate(mapPrefabs[i], Vector3.zero, Quaternion.identity, mapsParent.transform);
             obj.SetActive(false);
             mapPool.Enqueue(obj);
         }
+
+        //for (int i = data.minPrefabIndex; i <= data.maxPrefabIndex; i++)
+        //    allowedPrefab.Add(i);
+
+        //for (int i = data.minPrefabIndex; i <= data.maxPrefabIndex; i++)
+        //{
+        //    GameObject obj = Instantiate(mapPrefabs[i], Vector3.zero, Quaternion.identity, mapsParent.transform);
+        //    obj.SetActive(false);
+        //    mapPool.Enqueue(obj);
+        //}
     }
 
     void CreateRoad() // Map üretme
