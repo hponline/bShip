@@ -88,6 +88,11 @@ public class ShipController : MonoBehaviour
         #endregion
     }
 
+    public float GetSpeed()
+    {
+        return currentForwardSpeed;
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
