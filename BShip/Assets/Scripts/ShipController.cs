@@ -8,13 +8,14 @@ public class ShipController : MonoBehaviour
     public float laneChangeSpeed = 90f;
     public float acceleration = 70f;
     public float deceleration = 100f;
-    //public int desiredLane = 0; // Şerit 0 ortada demektir.
-    readonly int laneDistance = 53; // Yatay Şerit uzunlugu
+    public float rotationSpeed = 10f;
+    public float NoseAngle = 1f;
     float currentForwardSpeed;
 
-    //Vector3 inputKey;
+    public Transform boatNose;
     Vector3 inputKeyHorizontal;
-    //public float rotationSpeed = 10f;
+    readonly int laneDistance = 53; // Yatay Şerit uzunlugu
+
     private void Start()
     {
         currentForwardSpeed = minMoveSpeed;
@@ -45,47 +46,19 @@ public class ShipController : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         transform.position = pos;
 
-
-        //// Dönüş
-        //float speedFactor = currentForwardSpeed / maxMoveSpeed;
-        //if (horizontalInput != 0f)
-        //{
-        //    Vector3 targetDirection = new Vector3(horizontalInput, 0f, 1f).normalized;
-        //    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * speedFactor * Time.deltaTime);
-        //}
-        //else
-        //{
-        //    Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward);
-        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * speedFactor * Time.deltaTime);
-        //}
-
-        #region Eski Kod
-        /*
-         //transform.position += minMoveSpeed * Time.deltaTime * transform.forward;
-
-        // Şerit geçiş
-        //if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-        //    desiredLane++;
-
-        //if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-        //    desiredLane--;
-        //desiredLane = Mathf.Clamp(desiredLane, -1, 1);
-
-        // İleri
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        // Dönüş
+        float speedFactor = currentForwardSpeed / maxMoveSpeed;
+        if (horizontalInput != 0f)
         {
-            //inputKey = new Vector3(0, 0, Input.GetAxis("Vertical"));
-            //transform.position += maxMoveSpeed * Time.deltaTime * transform.forward;
+            Vector3 targetDirection = new Vector3(horizontalInput, 0f, NoseAngle).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * speedFactor * Time.deltaTime);
         }
-
-        // Şerit sınır
-        //Vector3 targetPosition = transform.position; // Hedef yol
-        //targetPosition.x = desiredLane * laneDistance;
-        //transform.position = Vector3.Lerp(transform.position, targetPosition, laneChangeSpeed * Time.deltaTime);
-
-         */
-        #endregion
+        else
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * speedFactor * Time.deltaTime);
+        }        
     }
 
     public float GetSpeed()

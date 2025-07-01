@@ -13973,6 +13973,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2415069216743052162, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3539761644638613355, guid: f34c338034a027045a9394ba793b6ded, type: 3}
       propertyPath: delay.Array.data[0]
       value: 5
@@ -13989,7 +13993,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: boatmodel80
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3858563779411566745, guid: f34c338034a027045a9394ba793b6ded, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14057,11 +14062,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2415069216743052162, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701893383220035834, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701893383220035834, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858563779411566745, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8188136349620926900, guid: f34c338034a027045a9394ba793b6ded, type: 3}
       propertyPath: m_Name
       value: boatmodel82
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8785408809629987150, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2415069216743052162, guid: f34c338034a027045a9394ba793b6ded, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14129,6 +14155,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2415069216743052162, guid: f34c338034a027045a9394ba793b6ded, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3539761644638613355, guid: f34c338034a027045a9394ba793b6ded, type: 3}
       propertyPath: delay.Array.data[0]
       value: 2
@@ -14145,7 +14175,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: boatmodel81
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3858563779411566745, guid: f34c338034a027045a9394ba793b6ded, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
