@@ -60,13 +60,10 @@ public class ShipController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * speedFactor * Time.deltaTime);
         }        
     }
-
     public float GetSpeed()
     {
         return currentForwardSpeed;
     }
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Coin"))
@@ -75,7 +72,6 @@ public class ShipController : MonoBehaviour
             other.gameObject.SetActive(false);
             CoinManager.coinManagerInstance.AddCoin(1);
         }
-
         if (other.CompareTag("Obstacle"))
         {
             GameManager.gameManagerInstance.GameOver();

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -97,17 +96,7 @@ public class SpawnManager : MonoBehaviour
             GameObject obj = Instantiate(mapPrefabs[i], Vector3.zero, Quaternion.identity, mapsParent.transform);
             obj.SetActive(false);
             mapPool.Enqueue(obj);
-        }
-
-        //for (int i = data.minPrefabIndex; i <= data.maxPrefabIndex; i++)
-        //    allowedPrefab.Add(i);
-
-        //for (int i = data.minPrefabIndex; i <= data.maxPrefabIndex; i++)
-        //{
-        //    GameObject obj = Instantiate(mapPrefabs[i], Vector3.zero, Quaternion.identity, mapsParent.transform);
-        //    obj.SetActive(false);
-        //    mapPool.Enqueue(obj);
-        //}
+        }        
     }
 
     void CreateRoad() // Map üretme
