@@ -1,11 +1,4 @@
-<h1>Youtube</h1>
-https://www.youtube.com/watch?v=xq76LeIBtNc
-
-
-https://github.com/user-attachments/assets/34fc52bb-2b31-48c6-8028-fd580a2d6ee7
-
-<hr>
-
+<h1>Mekanik ve Sistemler:</h1>
 Object Pooling sistemi ile performans odaklı prefab yönetimi
 
 Level Management: mesafeye bağlı prefab seçim ve spawn sistemi
@@ -16,4 +9,11 @@ Vehicle/Boat Controller: hız, ivme, dönüş ve sınırlandırmalarla hareket m
 
 Cinemachine Camera Integration: sabit takip kamerası, GTA tarzı kamera davranışı
 
+<h1>Youtube</h1>
+https://www.youtube.com/watch?v=xq76LeIBtNc
+
+<hr>
+
+
+https://github.com/user-attachments/assets/34fc52bb-2b31-48c6-8028-fd580a2d6ee7
 
